@@ -1,0 +1,230 @@
+@use '../variables' as *;
+@use '../mixins' as *;
+
+.dashboard {
+  padding: $spacing-md;
+  background: linear-gradient(135deg, $color-background 0%, rgba($color-primary, 0.02) 100%);
+  min-height: 100%;
+
+  &__header {
+    margin-bottom: $spacing-xl;
+
+    &-content {
+      h1 {
+        font-size: 1.5rem;
+        font-weight: $font-weight-medium;
+        color: $color-foreground;
+        margin-bottom: $spacing-xs;
+        letter-spacing: -0.02em;
+      }
+
+      p {
+        color: $color-muted-foreground;
+        font-size: $font-size-lg;
+      }
+    }
+  }
+
+  &__metrics {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: $spacing-sm;
+    margin-bottom: $spacing-xl;
+  }
+
+  &__metric-card {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-md;
+    padding: $spacing-lg;
+    background: $color-card;
+    border-radius: $radius-lg;
+    border: 1px solid $color-border;
+    transition: all $transition-base;
+
+    &:hover {
+      border-color: $color-primary;
+      box-shadow: 0 2px 12px rgba($color-primary, 0.1);
+    }
+  }
+
+  &__metric-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: $radius-md;
+    background: $color-muted;
+
+    svg {
+      width: 1.25rem;
+      height: 1.25rem;
+      color: $color-muted-foreground;
+    }
+
+    .dashboard__metric-card--primary & {
+      background: linear-gradient(135deg, rgba(hsl(220, 90%, 56%), 0.15) 0%, rgba(hsl(220, 90%, 66%), 0.1) 100%);
+      
+      svg {
+        color: hsl(220, 90%, 56%);
+      }
+    }
+
+    .dashboard__metric-card--success & {
+      background: linear-gradient(135deg, rgba(hsl(142, 76%, 36%), 0.15) 0%, rgba(hsl(142, 76%, 46%), 0.1) 100%);
+      
+      svg {
+        color: hsl(142, 76%, 36%);
+      }
+    }
+
+    .dashboard__metric-card--warning & {
+      background: linear-gradient(135deg, rgba(hsl(43, 96%, 56%), 0.15) 0%, rgba(hsl(43, 96%, 66%), 0.1) 100%);
+      
+      svg {
+        color: hsl(43, 96%, 46%);
+      }
+    }
+
+    .dashboard__metric-card--danger & {
+      background: linear-gradient(135deg, rgba(hsl(0, 84%, 60%), 0.15) 0%, rgba(hsl(0, 84%, 70%), 0.1) 100%);
+      
+      svg {
+        color: hsl(0, 84%, 60%);
+      }
+    }
+  }
+
+  &__metric-content {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-xs;
+    flex: 1;
+  }
+
+  &__metric-label {
+    font-size: $font-size-xs;
+    font-weight: $font-weight-medium;
+    color: $color-muted-foreground;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  &__metric-value {
+    font-size: $font-size-sm;
+    font-weight: $font-weight-bold;
+    color: $color-foreground;
+    line-height: 1;
+  }
+
+  &__tables {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: $spacing-md;
+  }
+
+  &__table-card {
+    background: $color-card;
+    border-radius: $radius-xl;
+    border: 1px solid $color-border;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    overflow: hidden;
+    transition: all $transition-base;
+
+    &:hover {
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    }
+
+    .card__header {
+      padding: $spacing-sm;
+      border-bottom: 1px solid $color-border;
+    }
+
+    .card__title {
+      font-size: $font-size-sm;
+      font-weight: $font-weight-semibold;
+      color: $color-foreground;
+      margin: 0;
+    }
+
+    .card__content {
+      padding: 0;
+    }
+  }
+
+  &__table-wrapper {
+    overflow-x: auto;
+    @include custom-scrollbar;
+  }
+
+  &__table {
+    width: 100%;
+    font-size: $font-size-xs;
+    border-collapse: collapse;
+
+    thead {
+
+      th {
+        text-align: left;
+        padding: $spacing-xs $spacing-sm;
+        font-weight: $font-weight-semibold;
+        color: $color-muted-foreground;
+        white-space: nowrap;
+        font-size: $font-size-xs;
+        border-bottom: 1px solid $color-border;
+
+        &:first-child {
+          padding-left: $spacing-md;
+        }
+
+        &:last-child {
+          padding-right: $spacing-md;
+        }
+      }
+    }
+
+    tbody {
+      tr {
+        transition: background-color $transition-fast;
+        border-bottom: 1px solid $color-border;
+
+        &:hover {
+          background-color: rgba($color-primary, 0.02);
+        }
+
+        &:last-child {
+          border-bottom: none;
+        }
+      }
+
+      td {
+        padding: $spacing-sm;
+        color: $color-foreground;
+        vertical-align: middle;
+        font-size: $font-size-xs;
+
+        &:first-child {
+          padding-left: $spacing-md;
+          font-weight: $font-weight-medium;
+        }
+
+        &:last-child {
+          padding-right: $spacing-md;
+        }
+      }
+    }
+  }
+
+  &__loading,
+  &__error {
+    @include flex-center;
+    min-height: 400px;
+    font-size: $font-size-lg;
+    color: $color-muted-foreground;
+  }
+
+  &__error {
+    color: $color-destructive;
+  }
+}

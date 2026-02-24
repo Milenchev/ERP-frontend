@@ -1,0 +1,111 @@
+@use '../variables' as *;
+@use '../mixins' as *;
+
+.button {
+  @include button-base;
+  height: 2.5rem;
+  padding: $spacing-sm $spacing-md;
+
+  &--default {
+    background-color: $color-primary;
+    color: $color-primary-foreground;
+    box-shadow: $shadow-sm;
+
+    &:hover {
+      opacity: 0.9;
+    }
+
+    &:active {
+      opacity: 1;
+      transform: scale(0.95);
+    }
+  }
+
+  &--destructive {
+    background-color: $color-destructive;
+    color: $color-destructive-foreground;
+    box-shadow: $shadow-sm;
+
+    &:hover {
+      opacity: 0.9;
+    }
+
+    &:active {
+      opacity: 1;
+      transform: scale(0.95);
+    }
+  }
+
+  &--outline {
+    border: 2px solid rgba($color-primary, 0.2);
+    background-color: $color-background;
+    color: $color-foreground;
+
+    &:hover {
+      background-color: rgba($color-primary, 0.1);
+      border-color: rgba($color-primary, 0.4);
+    }
+
+    &:active {
+      background-color: rgba($color-primary, 0.2);
+    }
+  }
+
+  &--secondary {
+    background-color: $color-secondary;
+    color: $color-secondary-foreground;
+    box-shadow: $shadow-sm;
+
+    &:hover {
+      opacity: 0.8;
+    }
+
+    &:active {
+      opacity: 1;
+      transform: scale(0.95);
+    }
+  }
+
+  &--ghost {
+    background-color: transparent;
+    color: $color-foreground;
+
+    &:hover {
+      background-color: $color-accent;
+      color: $color-accent-foreground;
+    }
+
+    &:active {
+      background-color: rgba($color-accent, 0.8);
+    }
+  }
+
+  &--link {
+    background-color: transparent;
+    color: $color-primary;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+
+  &--sm {
+    height: 2.25rem;
+    padding: $spacing-xs $spacing-md;
+    font-size: $font-size-xs;
+  }
+
+  &--lg {
+    height: 2.75rem;
+    padding: $spacing-md $spacing-xl;
+    font-size: $font-size-base;
+  }
+
+  &--icon {
+    height: 2.5rem;
+    width: 2.5rem;
+    padding: 0;
+  }
+}

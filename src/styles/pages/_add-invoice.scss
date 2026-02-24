@@ -1,0 +1,203 @@
+@use '../variables' as *;
+@use '../mixins' as *;
+
+.add-invoice {
+  padding: $spacing-xl;
+  background-color: $color-background;
+  min-height: 100%;
+
+  &__container {
+    max-width: 1400px;
+    margin: 0 auto;
+    background-color: $color-card;
+    border-radius: $radius-lg;
+    box-shadow: $shadow-md;
+    overflow: hidden;
+  }
+
+  &__header {
+    padding: $spacing-lg $spacing-xl;
+    background-color: $color-primary;
+    color: $color-primary-foreground;
+    font-size: $font-size-xl;
+    font-weight: $font-weight-bold;
+  }
+
+  &__tabs {
+    display: flex;
+    gap: 0;
+    border-bottom: 2px solid $color-border;
+    padding: 0 $spacing-xl;
+  }
+
+  &__tab {
+    padding: $spacing-md $spacing-xl;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-medium;
+    color: $color-muted-foreground;
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -2px;
+    cursor: pointer;
+    transition: all $transition-fast;
+
+    &:hover {
+      color: $color-foreground;
+    }
+
+    &--active {
+      color: $color-primary;
+      border-bottom-color: $color-primary;
+      font-weight: $font-weight-semibold;
+    }
+  }
+
+  &__form {
+    padding: $spacing-xl;
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-lg;
+  }
+
+  &__row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: $spacing-lg;
+    align-items: end;
+  }
+
+  &__field {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-xs;
+
+    &--small {
+      min-width: 150px;
+    }
+
+    &--large {
+      grid-column: span 2;
+    }
+
+    label {
+      font-size: $font-size-sm;
+      font-weight: $font-weight-medium;
+      color: $color-foreground;
+    }
+
+    input,
+    select {
+      padding: $spacing-sm $spacing-md;
+      border: 1px solid $color-border;
+      border-radius: $radius-md;
+      font-size: $font-size-sm;
+      background-color: $color-background;
+      transition: all $transition-fast;
+
+      &:focus {
+        outline: none;
+        border-color: $color-primary;
+        box-shadow: 0 0 0 3px rgba($color-primary, 0.1);
+      }
+
+      &:disabled {
+        background-color: $color-muted;
+        color: $color-muted-foreground;
+        cursor: not-allowed;
+      }
+    }
+
+    select {
+      cursor: pointer;
+    }
+  }
+
+  &__table-container {
+    padding: 0 $spacing-xl $spacing-xl;
+    overflow-x: auto;
+    @include custom-scrollbar;
+  }
+
+  &__table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: $font-size-sm;
+
+    thead {
+      background-color: $color-muted;
+
+      th {
+        padding: $spacing-md;
+        text-align: left;
+        font-weight: $font-weight-semibold;
+        color: $color-foreground;
+        border-bottom: 2px solid $color-border;
+      }
+    }
+
+    tbody {
+      tr {
+        border-bottom: 1px solid $color-border;
+
+        &:hover {
+          background-color: rgba($color-primary, 0.02);
+        }
+      }
+
+      td {
+        padding: $spacing-sm $spacing-md;
+        vertical-align: middle;
+
+        input,
+        select {
+          width: 100%;
+          padding: $spacing-xs $spacing-sm;
+          border: 1px solid $color-border;
+          border-radius: $radius-sm;
+          font-size: $font-size-sm;
+          background-color: $color-background;
+
+          &:focus {
+            outline: none;
+            border-color: $color-primary;
+          }
+        }
+
+        input[type="number"] {
+          text-align: right;
+        }
+      }
+    }
+  }
+
+  &__totals-row {
+    background-color: $color-muted;
+    font-weight: $font-weight-medium;
+
+    &--final {
+      background-color: rgba($color-primary, 0.1);
+      font-weight: $font-weight-bold;
+      font-size: $font-size-base;
+    }
+  }
+
+  &__totals-label {
+    text-align: right;
+    font-weight: $font-weight-semibold;
+  }
+
+  &__footer {
+    display: flex;
+    gap: $spacing-md;
+    padding: $spacing-xl;
+    background-color: $color-muted;
+    border-top: 1px solid $color-border;
+  }
+
+  &__btn-add,
+  &__btn-print,
+  &__btn-back {
+    min-width: 150px;
+  }
+}

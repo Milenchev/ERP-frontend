@@ -1,0 +1,38 @@
+// Base styles
+@use 'reset';
+@use 'variables';
+@use 'mixins';
+
+// Components
+@use 'components/button';
+@use 'components/card';
+@use 'components/sidebar';
+@use 'components/header';
+@use 'components/badge';
+
+// Pages
+@use 'pages/dashboard';
+@use 'pages/documents';
+@use 'pages/add-invoice';
+@use 'pages/view-invoice';
+@use 'pages/storehouse';
+@use 'pages/settings';
+
+// Layout
+.main-layout {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+
+  &__content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  &__page {
+    flex: 1;
+    overflow-y: auto;
+  }
+}

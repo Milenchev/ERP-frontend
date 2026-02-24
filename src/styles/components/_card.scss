@@ -1,0 +1,39 @@
+@use '../variables' as *;
+@use '../mixins' as *;
+
+.card {
+  @include card-base;
+  padding: $spacing-lg;
+
+  &__header {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-sm;
+    margin-bottom: $spacing-lg;
+  }
+
+  &__title {
+    font-size: $font-size-xl;
+    font-weight: $font-weight-semibold;
+    line-height: $line-height-tight;
+    color: $color-card-foreground;
+  }
+
+  &__description {
+    font-size: $font-size-sm;
+    color: $color-muted-foreground;
+    line-height: $line-height-normal;
+  }
+
+  &__content {
+    padding: 0;
+  }
+
+  &__footer {
+    display: flex;
+    align-items: center;
+    margin-top: $spacing-lg;
+    padding-top: $spacing-lg;
+    border-top: 1px solid $color-border;
+  }
+}

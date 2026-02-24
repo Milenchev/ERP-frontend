@@ -1,0 +1,31 @@
+@use '../variables' as *;
+@use '../mixins' as *;
+@use 'sass:color';
+
+.badge {
+  @include badge-base;
+
+  &--waiting {
+    background-color: rgba($color-badge-waiting, 0.1);
+    color: color.adjust($color-badge-waiting, $lightness: -20%);
+    border: 1px solid rgba($color-badge-waiting, 0.3);
+  }
+
+  &--paid {
+    background-color: rgba($color-badge-paid, 0.1);
+    color: color.adjust($color-badge-paid, $lightness: -10%);
+    border: 1px solid rgba($color-badge-paid, 0.3);
+  }
+
+  &--missed {
+    background-color: rgba($color-badge-missed, 0.1);
+    color: color.adjust($color-badge-missed, $lightness: -10%);
+    border: 1px solid rgba($color-badge-missed, 0.3);
+  }
+
+  &--default {
+    background-color: $color-muted;
+    color: $color-muted-foreground;
+    border: 1px solid $color-border;
+  }
+}

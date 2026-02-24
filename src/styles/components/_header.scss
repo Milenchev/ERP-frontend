@@ -1,0 +1,30 @@
+@use '../variables' as *;
+@use '../mixins' as *;
+
+.header {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  height: 4rem;
+  border-bottom: 1px solid $color-border;
+  padding: 0 $spacing-xl;
+  background-color: $color-card;
+
+  &__actions {
+    display: flex;
+    align-items: center;
+    gap: $spacing-sm;
+  }
+
+  &__user {
+    display: flex;
+    align-items: center;
+    gap: $spacing-xs;
+  }
+
+  &__user-name {
+    font-size: $font-size-sm;
+    font-weight: $font-weight-medium;
+    color: $color-foreground;
+  }
+}

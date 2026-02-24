@@ -1,0 +1,321 @@
+@use '../variables' as *;
+@use '../mixins' as *;
+
+.documents {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background-color: $color-background;
+
+  // Horizontal Navigation Tabs
+  &__nav {
+    display: flex;
+    gap: 0;
+    background-color: $color-card;
+    border-bottom: 1px solid $color-border;
+  }
+
+  &__nav-item {
+    display: flex;
+    align-items: center;
+    gap: $spacing-sm;
+    padding: $spacing-md $spacing-lg;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-medium;
+    color: $color-foreground;
+    text-decoration: none;
+    border-bottom: 3px solid transparent;
+    transition: all $transition-base;
+    cursor: pointer;
+
+    svg {
+      width: 1.125rem;
+      height: 1.125rem;
+    }
+
+    &:hover {
+      background-color: rgba($color-primary, 0.05);
+    }
+
+    &--active {
+      color: $color-primary;
+      border-bottom-color: $color-primary;
+      background-color: rgba($color-primary, 0.05);
+    }
+  }
+
+  // Container for sidebar + main content
+  &__container {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+  }
+
+  // Left Sidebar
+  &__sidebar {
+    width: 12rem;
+    background-color: $color-card;
+    border-right: 1px solid $color-border;
+    padding: $spacing-lg;
+  }
+
+  &__sidebar-content {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-xs;
+  }
+
+  &__sidebar-header {
+    font-size: $font-size-sm;
+    font-weight: $font-weight-semibold;
+    color: $color-muted-foreground;
+    margin-bottom: $spacing-sm;
+  }
+
+  &__sidebar-item {
+    display: flex;
+    align-items: center;
+    padding: $spacing-sm $spacing-md;
+    font-size: $font-size-sm;
+    color: $color-foreground;
+    border-radius: $radius-md;
+    cursor: pointer;
+    transition: all $transition-fast;
+
+    &:hover {
+      background-color: $color-muted;
+    }
+
+    &--active {
+      background-color: $color-primary;
+      color: $color-primary-foreground;
+    }
+  }
+
+  &__sidebar-add {
+    display: block;
+    padding: $spacing-sm $spacing-md;
+    margin-top: $spacing-sm;
+    font-size: $font-size-sm;
+    color: $color-primary;
+    text-decoration: none;
+    border-radius: $radius-md;
+    cursor: pointer;
+    transition: all $transition-fast;
+
+    &:hover {
+      background-color: rgba($color-primary, 0.1);
+    }
+  }
+
+  // Main Content Area
+  &__main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+
+    &--full {
+      width: 100%;
+    }
+  }
+
+  // Header with title and actions
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: $spacing-xl;
+    background-color: $color-card;
+    border-bottom: 1px solid $color-border;
+  }
+
+  &__header-left {
+    display: flex;
+    align-items: center;
+    gap: $spacing-sm;
+  }
+
+  &__title {
+    font-size: $font-size-xl;
+    font-weight: $font-weight-bold;
+    color: $color-foreground;
+  }
+
+  &__count {
+    font-size: $font-size-base;
+    color: $color-muted-foreground;
+  }
+
+  &__header-right {
+    display: flex;
+    align-items: center;
+    gap: $spacing-md;
+  }
+
+  &__btn-report,
+  &__btn-add {
+    display: flex;
+    align-items: center;
+    gap: $spacing-sm;
+
+    svg {
+      width: 1rem;
+      height: 1rem;
+    }
+  }
+
+  &__search {
+    position: relative;
+    width: 16rem;
+
+    svg {
+      position: absolute;
+      left: $spacing-md;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 1rem;
+      height: 1rem;
+      color: $color-muted-foreground;
+      pointer-events: none;
+    }
+
+    input {
+      width: 100%;
+      padding: $spacing-sm $spacing-md $spacing-sm 2.5rem;
+      border: 1px solid $color-border;
+      border-radius: $radius-md;
+      font-size: $font-size-sm;
+      background-color: $color-background;
+      transition: all $transition-fast;
+
+      &:focus {
+        outline: none;
+        border-color: $color-primary;
+        box-shadow: 0 0 0 3px rgba($color-primary, 0.1);
+      }
+
+      &::placeholder {
+        color: $color-muted-foreground;
+      }
+    }
+  }
+
+  // Table Container
+  &__table-container {
+    flex: 1;
+    overflow: auto;
+    @include custom-scrollbar;
+  }
+
+  &__table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: $color-card;
+
+    thead {
+      position: sticky;
+      top: 0;
+      background-color: $color-card;
+      z-index: 10;
+
+      tr {
+        border-bottom: 2px solid $color-border;
+      }
+
+      th {
+        padding: $spacing-md;
+        text-align: left;
+        font-size: $font-size-sm;
+        font-weight: $font-weight-semibold;
+        color: $color-foreground;
+        white-space: nowrap;
+      }
+    }
+
+    tbody {
+      tr {
+        border-bottom: 1px solid $color-border;
+        transition: background-color $transition-fast;
+
+        &:hover {
+          background-color: rgba($color-primary, 0.03);
+        }
+      }
+
+      td {
+        padding: $spacing-md;
+        font-size: $font-size-sm;
+        color: $color-foreground;
+      }
+    }
+
+    tfoot {
+      position: sticky;
+      bottom: 0;
+      background-color: $color-muted;
+      border-top: 2px solid $color-border;
+
+      tr {
+        font-weight: $font-weight-semibold;
+      }
+
+      td {
+        padding: $spacing-md;
+        font-size: $font-size-sm;
+      }
+    }
+  }
+
+  // Action Buttons in Table
+  &__actions {
+    display: flex;
+    align-items: center;
+    gap: $spacing-xs;
+  }
+
+  &__action-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    padding: 0;
+    border: none;
+    background: none;
+    color: $color-muted-foreground;
+    border-radius: $radius-sm;
+    cursor: pointer;
+    transition: all $transition-fast;
+
+    svg {
+      width: 1rem;
+      height: 1rem;
+    }
+
+    &:hover {
+      background-color: $color-muted;
+      color: $color-foreground;
+    }
+
+    &--delete {
+      &:hover {
+        background-color: rgba($color-destructive, 0.1);
+        color: $color-destructive;
+      }
+    }
+  }
+
+  // Loading and Error States
+  &__loading,
+  &__error {
+    @include flex-center;
+    min-height: 400px;
+    font-size: $font-size-lg;
+    color: $color-muted-foreground;
+  }
+
+  &__error {
+    color: $color-destructive;
+  }
+}

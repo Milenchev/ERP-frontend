@@ -1,0 +1,212 @@
+@use '../variables' as *;
+@use '../mixins' as *;
+
+.view-invoice {
+  max-width: 210mm;
+  margin: 0 auto;
+  padding: $spacing-lg;
+  background: white;
+  font-size: $font-size-xs;
+  color: #333;
+
+  &__loading,
+  &__error {
+    @include flex-center;
+    min-height: 400px;
+    font-size: $font-size-lg;
+  }
+
+  &__error {
+    color: $color-destructive;
+  }
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: $spacing-lg;
+    padding-bottom: $spacing-sm;
+    border-bottom: 2px solid #333;
+  }
+
+  &__title {
+    font-size: $font-size-xl;
+    font-weight: $font-weight-bold;
+    color: #333;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  &__original {
+    font-size: $font-size-xs;
+    font-weight: $font-weight-normal;
+    color: #666;
+    margin-left: $spacing-xs;
+    text-transform: none;
+  }
+
+  &__logo {
+    width: 50px;
+    height: 50px;
+    background-color: #f5f5f5;
+    border-radius: $radius-sm;
+  }
+
+  &__row-holder {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: $spacing-lg;
+    margin-bottom: $spacing-lg;
+  }
+
+  &__content-row {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-xs;
+  }
+
+  &__content-header {
+    font-size: $font-size-xs;
+    font-weight: $font-weight-bold;
+    color: #333;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: $spacing-xs;
+  }
+
+  &__info-row {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: $spacing-sm;
+    margin-bottom: 2px;
+    font-size: $font-size-xs;
+    line-height: 1.4;
+  }
+
+  &__label {
+    font-weight: $font-weight-medium;
+    color: #666;
+  }
+
+  &__value {
+    color: #333;
+  }
+
+  &__table {
+    width: 100%;
+    margin-bottom: $spacing-md;
+    border-collapse: collapse;
+    font-size: $font-size-xs;
+
+    thead {
+      border-bottom: 2px solid #333;
+
+      th {
+        padding: $spacing-xs $spacing-xs;
+        text-align: left;
+        font-weight: $font-weight-bold;
+        color: #333;
+        text-transform: uppercase;
+        font-size: $font-size-xs;
+        letter-spacing: 0.05em;
+      }
+    }
+
+    tbody {
+      tr {
+        border-bottom: 1px solid #e5e5e5;
+
+        &:last-child {
+          border-bottom: none;
+        }
+      }
+
+      td {
+        padding: $spacing-xs $spacing-xs;
+        color: #333;
+        vertical-align: top;
+      }
+    }
+  }
+
+  &__product-name {
+    font-weight: $font-weight-medium;
+  }
+
+  &__total-row {
+    font-weight: $font-weight-medium;
+    border-top: 2px solid #333 !important;
+
+    td {
+      padding-top: $spacing-sm !important;
+    }
+
+    &--final {
+      font-weight: $font-weight-bold;
+      font-size: $font-size-sm;
+      border-top: 2px solid #333 !important;
+
+      td {
+        padding-top: $spacing-sm !important;
+      }
+    }
+  }
+
+  &__total-label {
+    text-align: left;
+    font-style: italic;
+    color: #666;
+    font-size: $font-size-xs;
+  }
+
+  &__total-text {
+    text-align: right;
+    font-weight: $font-weight-semibold;
+  }
+
+  &__footer {
+    display: flex;
+    justify-content: space-between;
+    padding-top: $spacing-md;
+    border-top: 2px solid #333;
+    font-size: $font-size-xs;
+    color: #666;
+  }
+
+  &__footer-item {
+    color: #666;
+  }
+
+  // Print styles
+  @media print {
+    padding: 20mm;
+    background: white;
+    color: black;
+
+    &__header {
+      border-bottom-color: black;
+    }
+
+    &__table {
+      thead {
+        border-bottom-color: black;
+      }
+
+      tbody tr {
+        border-bottom-color: #ddd;
+      }
+    }
+
+    &__total-row {
+      border-top-color: black !important;
+
+      &--final {
+        border-top-color: black !important;
+      }
+    }
+
+    &__footer {
+      border-top-color: black;
+    }
+  }
+}
